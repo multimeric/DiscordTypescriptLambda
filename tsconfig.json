@@ -6,7 +6,7 @@
     "target": "ES2018",
     "module": "commonjs",
     "lib": [
-      "es2018"
+      "es2020"
     ],
     "importHelpers": true,
     "skipLibCheck": true,
@@ -29,7 +29,7 @@
     ]
   },
   "exclude": [
-    "**/node_modules",
+    "node_modules",
     "cdk.out"
   ]
 }

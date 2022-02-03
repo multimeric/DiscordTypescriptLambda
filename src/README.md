@@ -1,1 +1,0 @@
-This contains the entire Typescript app which will be deployed as one bundle with multiple entrypoints, each of which will be used by one lambda.

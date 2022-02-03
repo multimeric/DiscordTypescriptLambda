@@ -1,12 +1,11 @@
 import {AWSLambdaServer, SlashCreator} from "slash-create";
-import {env} from "./common"
+import {getSlashEnv, commands} from "./common"
 import * as path from "path";
 
-const creator = new SlashCreator(env);
+const creator = new SlashCreator(getSlashEnv());
 
 // This defines the lambda.interactions endpoint
 creator
     .withServer(new AWSLambdaServer(module.exports, 'interactions'))
-    .registerCommandsIn(path.join(__dirname, 'commands'))
-    .syncCommands();
+    .registerCommands(commands);
 

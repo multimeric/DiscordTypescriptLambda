@@ -1,5 +1,5 @@
-import {CommandContext, CommandOptionType, SlashCommand, SlashCreator} from "slash-create";
-import {LambdaSlashCommand} from "../common";
+import {CommandContext, CommandOptionType, SlashCreator} from "slash-create";
+import LambdaSlashCommand from "../command";
 
 export default class HelloCommand extends LambdaSlashCommand {
     constructor(creator: SlashCreator) {

@@ -2,7 +2,9 @@
 import {GatewayServer, SlashCreator} from "slash-create";
 import * as Discord from "discord.js";
 import * as path from "path";
-import {env} from "./common";
+import {getSlashEnv} from "./common";
+
+let env = getSlashEnv();
 
 const client = new Discord.Client({ intents: [ ] });
 const creator = new SlashCreator({ client, ...env });
@@ -21,4 +23,4 @@ setTimeout(async () => {
         .syncCommandsIn(process.env.GUILD_ID!, true);
 
     await client.login(env.token);
-});
+}, 0);
