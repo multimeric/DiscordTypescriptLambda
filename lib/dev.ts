@@ -8,8 +8,8 @@ let env = getSlashEnv();
 
 const client = new Discord.Client({ intents: [ ] });
 const creator = new SlashCreator({ client, ...env });
-if (!process.env.GUILD_ID){
-    throw new Error("Please set the GUILD_ID variable to the ID of a server you are testing the bot in")
+if (!process.env.DISCORD_GUILD_ID){
+    throw new Error("Please set the DISCORD_GUILD_ID variable to the ID of a server you are testing the bot in")
 }
 
 setTimeout(async () => {
@@ -20,7 +20,7 @@ setTimeout(async () => {
             )
         )
         .registerCommandsIn(path.join(__dirname, 'commands'))
-        .syncCommandsIn(process.env.GUILD_ID!, true);
+        .syncCommandsIn(process.env.DISCORD_GUILD_ID!, true);
 
     await client.login(env.token);
 }, 0);

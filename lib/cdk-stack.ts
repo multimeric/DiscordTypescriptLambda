@@ -10,7 +10,7 @@ import {getCdkEnv} from "./common"
 import * as path from "path";
 import * as iam from "aws-cdk-lib/aws-iam"
 
-export class CdkStack extends Stack {
+export class DiscordStack extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
 
@@ -25,7 +25,7 @@ export class CdkStack extends Stack {
 
         // The API that hosts the above lambda
         const gateway = new apigateway.HttpApi(this, 'gateway');
-        gateway.addRoutes({
+        const route = gateway.addRoutes({
             path: "/event",
             methods: [apigateway.HttpMethod.POST],
             integration: new apiGatewayIntegrations.HttpLambdaIntegration("lambdaIntegration", handler, {
@@ -68,9 +68,9 @@ export class CdkStack extends Stack {
 
         // We return the URL as this is needed to plug into the discord developer dashboard
         new cdk.CfnOutput(this, 'discordEndpoint', {
-            value: gateway.apiEndpoint,
+            value: `${gateway.apiEndpoint}/${route[0].path}`,
             description: 'The Interactions Endpoint URL for your discord bot',
-            exportName: 'interactionsUrl',
+            exportName: 'discordInteractionsUrl',
         });
     }
 }
