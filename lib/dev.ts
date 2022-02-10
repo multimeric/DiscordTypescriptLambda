@@ -1,8 +1,7 @@
 // Script for local bot development
 import { GatewayServer, SlashCreator } from "slash-create";
 import * as Discord from "discord.js";
-import * as path from "path";
-import { getSlashEnv } from "./common";
+import { getSlashEnv, commands } from "./common";
 
 let env = getSlashEnv();
 
@@ -21,7 +20,7 @@ setTimeout(async () => {
         client.ws.on("INTERACTION_CREATE", handler)
       )
     )
-    .registerCommandsIn(path.join(__dirname, "commands"))
+    .registerCommands(commands)
     .syncCommandsIn(process.env.DISCORD_GUILD_ID!, true);
 
   await client.login(env.token);
